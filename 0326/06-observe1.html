@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <word-counter dir="abc">Hello, this is a custom web component</word-counter>
+    <script>
+        class WordCount extends HTMLElement{
+            constructor(){
+                super();
+                const shadow = this.attachShadow({mode : 'open'});
+                const style = document.createElement('style');
+ 
+                style.textContent = `
+                .text {
+                    font-size : 12px;
+                    margin-right : 10px;
+                }
+                .count {
+                    font-size : 20px;
+                    font-weight : bold;
+                }
+                .attr {
+                    font-size : 30px;
+                    text-decoration : underline;
+                }
+                `;
+ 
+                shadow.append(style);
+ 
+                const text = document.createElement("span");
+                text.classList.add("text");
+                shadow.append(text);
+               
+                const count = document.createElement("span");
+                count.classList.add("count");
+                shadow.append(count);
+ 
+                const attr = document.createElement("span");
+                attr.classList.add("attr");
+                shadow.append(attr);
+ 
+                // 가장 핵심 - 태그의 반응을 관찰하는 MutationObserver 삽입
+                this.observer = new MutationObserver(() => this.updateCount())
+            }
+ 
+            // 랜더링 될 때 발동되는 이벤트
+            connectedCallback(){
+                this.updateCount();
+                this.observer.observe(this, {
+                    // 내부의 태그가 변하면 MutationObserver의 콜백함수 발동
+                    childList : true,
+                    // 태그의 속성이 변하면 MutationObserver의 콜백함수 발동
+                    attributes : true,
+                })
+            }
+ 
+            // 화면에서 삭제될 경우 발동되는 이벤트
+            disconnectedCallback(){
+                // 옵저버 삭제.
+                this.observer.disconnect();
+            }
+ 
+            updateCount(){
+                var text = this.textContent;
+                var words = text.split(' ');
+                var count = words.length;
+                var attr = this.getAttribute('dir');
+                this.shadowRoot.querySelector('.text').textContent = text;
+                this.shadowRoot.querySelector('.count').textContent = count;
+                this.shadowRoot.querySelector('.attr').textContent = attr;
+            }
+        }
+ 
+        customElements.define("word-counter", WordCount);
+    </script>
+    <word-counter dir="abc">Hello,this is a custom web component</word-counter>
+    <button id="btn1">컨텐츠변환</button>
+    <button id="btn2">속성변환</button>
+    <script>
+      document.getElementById("btn1").addEventListener("click",function(){
+        document.getElementsByTagName("word-counter")[0].textContent= "THIS IS CHANGE WORD";
+      });
+      document.getElementById("btn2").addEventListener("click",function(){
+        document.getElementsByTagName("word-counter")[0].setAttribute("dir","efg");
+      });
+    </script>
+</body>
+</html>
+ 

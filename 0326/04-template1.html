@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="div1"></div>
+  <template id="temp1">
+    <style>
+      h1{color: blue;}
+    </style>
+    <h1>Hello</h1>
+    <p>안녕하세요이것은템플릿입니다</p>
+  </template>
+  <script>
+    let div1= document.getElementById("div1");
+    div1.attachShadow({mode:"open"});
+    div1.shadowRoot.append(temp1.content.cloneNode(true));
+  </script>
+</body>
+</html>

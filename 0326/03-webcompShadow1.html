@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <custom-input></custom-input>
+    <script>
+        class CustomInput extends HTMLElement {
+            connectedCallback(){
+                // ShadowDOM 생성
+                this.attachShadow({ mode : 'open'});
+ 
+                // h1 태그 생성
+                let h1 = document.createElement('h1');
+                h1.innerText = '안녕하세요';
+ 
+                // web Component의 shadowRoot에 h1 태그 삽입
+                this.shadowRoot.append(h1);
+ 
+                // p 태그 생성
+                let p1 = document.createElement("p1");
+                p1.textContent = '이것은 shadowDOM 입니다';
+ 
+                // web Component의 shadowRoot에 p 태그 삽입
+                this.shadowRoot.append(p1);
+ 
+                // input 태그 생성
+                let input1 = document.createElement('input');
+                input1.setAttribute('type',"text");
+ 
+                // web Component의 shadowRoot에 input 태그 삽입
+                this.shadowRoot.append(input1);
+            }
+        }
+        // custom-input 이란 이름으로 커스텀 엘리먼츠 등록
+        customElements.define('custom-input', CustomInput);
+    </script>
+</body>
+</html>
+ 

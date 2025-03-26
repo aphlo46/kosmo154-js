@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height : 20vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+ 
+    </div>
+    <button id="btn1">추가</button>
+ 
+    <template id="temp">
+        <style>
+            #card {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: stretch;
+            }
+        </style>
+        <div id="card">
+            <h1>제목</h1>
+            <p>내용1</p>
+            <button id="sub">확인</button>
+            <button id="can">취소</button>
+        </div>
+    </template>
+ 
+    <script>
+        document.getElementById("btn1").addEventListener("click", function(){
+            const container = document.getElementById("container");
+            const template = document.getElementById("temp")
+            container.append(template.content.cloneNode(true));
+        });
+    </script>
+</body>
+</html>
+ 
