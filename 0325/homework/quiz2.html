@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>문제 2: Custom Progress Bar</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 2em;
+    }
+
+    input[type="range"] {
+      width: 640px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>문제 2: Custom Progress Bar</h1>
+  <video id="myVideo" width="640" height="360">
+    <source src="../videos/sample1.mp4" type="video/mp4">
+    브라우저가 video 태그를 지원하지 않습니다.
+  </video>
+  <br>
+  <input type="range" id="progressBar" value="0" step="0.1">
+  <script>
+    const video = document.getElementById('myVideo');
+    const progressBar = document.getElementById('progressBar');
+    video.addEventListener('loadedmetadata', function () {
+      progressBar.max = video.duration;
+    });
+    video.addEventListener('timeupdate', function () {
+      progressBar.value = video.currentTime;
+    });
+    progressBar.addEventListener('input', function () {
+      video.currentTime = progressBar.value;
+    });
+  </script>
+</body>
+
+</html>

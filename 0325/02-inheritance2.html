@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+   //파라미터,매개변수,아규먼트,인자=>다똑같다Parameter,Arguement
+   //상속할시생성자함수는상속되지않는다
+ class Person{
+  constructor(name, age){
+    this.name= name;
+    this.age= age;
+  }
+  getName(){return this.name;}
+  getAge(){return this.age;}
+    }
+       
+ class Employee extends Person{
+  constructor(name, age, dept){
+    super(name, age);
+    this.dept= dept;
+  }
+ 
+   getDept(){return this.dept};
+    };
+
+    const emp1= new Employee("John", 37, "Sales");
+    console.log(emp1.getName());
+    console.log(emp1.getAge());
+    console.log(emp1.getDept());
+ 
+ 
+  </script>
+</body>
+</html>

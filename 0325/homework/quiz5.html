@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>문제 5: Playback Rate Controller</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 2em;
+    }
+
+    button {
+      padding: 0.5em 1em;
+      margin: 0.5em;
+      font-size: 16px;
+    }
+
+    #rateDisplay {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>문제 5: Playback Rate Controller</h1>
+  <video id="myVideo" width="640" height="360" controls>
+    <source src="../videos/sample1.mp4" type="video/mp4">
+    브라우저가 video 태그를 지원하지 않습니다.
+  </video>
+  <br>
+  <button onclick="decreaseRate()">속도감소</button>
+  <button onclick="increaseRate()">속도증가</button>
+  <p>현재 재생 속도: <span id="rateDisplay">1.0</span>x</p>
+  <script>
+    const video = document.getElementById('myVideo');
+    const rateDisplay = document.getElementById('rateDisplay');
+    function updateRateDisplay() {
+      rateDisplay.innerText = video.playbackRate.toFixed(1);
+    }
+    function increaseRate() {
+      video.playbackRate += 0.25;
+      updateRateDisplay();
+    }
+    function decreaseRate() {
+      video.playbackRate = Math.max(0.25, video.playbackRate - 0.25);
+      updateRateDisplay();
+    }
+  </script>
+</body>
+
+</html>

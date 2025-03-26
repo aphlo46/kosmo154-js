@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class SuperClass1{
+    constructor(){
+      console.log("superclass생성자!!!");
+    }
+
+      method1(){
+        console.log("superclass메소드1");
+      }
+    }
+    class ChildClass1 extends SuperClass1{
+      method2(){
+        console.log("childclass메소드2");
+      }
+    }
+    const obj1= new ChildClass1();
+    obj1.method1();
+  </script>
+</body>
+</html>

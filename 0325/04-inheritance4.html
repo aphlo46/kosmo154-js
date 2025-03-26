@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //this:나자신의기능혹은속성을참조할때접근가능한접근자
+    //super:나외의부모의기능혹은속성을참조할때접근가능한접근자
+    class SuperClass1{
+      superMethod1(){
+        console.log("이것은부모클래스의superMehtod1입니다");
+      }
+    }
+    class ChildClass1 extends SuperClass1 {
+       superMethod1(){
+        console.log("이것은자식클래스의superMethod1입니다")
+       }//이것이overriding덮어쓰기이다
+       superMethod2(){
+        super.superMethod1();
+        console.log("추가선언된기능");
+       }
+    }
+  const obj1= new ChildClass1();
+  obj1.superMethod1();
+  obj1.superMethod2();
+
+  </script>
+</body>
+</html>

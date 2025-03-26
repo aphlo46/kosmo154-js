@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>문제 3: Skip Forward/Backward</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 2em;
+    }
+
+    button {
+      padding: 0.5em 1em;
+      margin: 0.5em;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>문제 3: Skip Forward and Backward</h1>
+  <video id="myVideo" width="640" height="360" controls>
+    <source src="../videos/sample1.mp4" type="video/mp4">
+    브라우저가 video 태그를 지원하지 않습니다.
+  </video>
+  <br>
+  <button onclick="skipBackward()">10 초 뒤로</button>
+  <button onclick="skipForward()">10 초 앞으로</button>
+  <script>
+    const video = document.getElementById('myVideo');
+    function skipForward() {
+      video.currentTime = Math.min(video.currentTime + 10, video.duration);
+    }
+    function skipBackward() {
+      video.currentTime = Math.max(video.currentTime - 10, 0);
+    }
+  </script>
+</body>
+
+</html>

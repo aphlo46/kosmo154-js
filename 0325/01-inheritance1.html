@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //클래스의글로벌코딩컨벤션규칙은파스칼케이스입니다<->카멜케이스
+    //변수:카멜케이스,명사형으로시작
+    //함수,메소드:카멜케이스,동사형으로시작
+    class PersonInfo{
+      setName(name){this.name= name;}
+      getName(){return name;}
+      setAge(age){this.age= age;}
+      getAge(){return this.age;}
+    }
+   class Employee extends PersonInfo{
+    setDept(dept){this.dept= dept;}
+    getDept(){return this.dept;}
+   }
+   const emp1= new Employee();
+   emp1.setName("Mike");
+   emp1.setAge(42);
+   emp1.setDept("Sales");
+   console.log(emp1);
+  </script>
+
+</body>
+</html>
